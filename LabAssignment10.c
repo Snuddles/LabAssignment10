@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Max size of the Trie nodes
 #define ALPHABET_SIZE 26
 
+// Creates the struct of the Trie
 struct Trie {
     struct Trie *children[ALPHABET_SIZE];
     int count;
@@ -13,6 +15,7 @@ void insert(struct Trie **ppTrie, char *word);
 int numberOfOccurrences(struct Trie *pTrie, char *word);
 struct Trie *deallocateTrie(struct Trie *pTrie);
 
+// Inserts character into node
 void insert(struct Trie **ppTrie, char *word) {
     struct Trie *pTrie = *ppTrie;
     if (!pTrie) {
@@ -32,6 +35,7 @@ void insert(struct Trie **ppTrie, char *word) {
     pTrie->count++;
 }
 
+//Returns the amount of children for the word
 int numberOfOccurrences(struct Trie *pTrie, char *word) {
     if (!pTrie) {
         return 0;
@@ -49,6 +53,7 @@ int numberOfOccurrences(struct Trie *pTrie, char *word) {
     return pTrie->count;
 }
 
+// Deallocates/free memory of the children node then the tree itself
 struct Trie *deallocateTrie(struct Trie *pTrie) {
     if (!pTrie) {
         return NULL;
@@ -60,6 +65,7 @@ struct Trie *deallocateTrie(struct Trie *pTrie) {
     return NULL;
 }
 
+// Main function
 int main(void) {
     struct Trie *trie = NULL;
     char *pWords[] = {"notaword", "ucf", "no", "note", "corg"};
